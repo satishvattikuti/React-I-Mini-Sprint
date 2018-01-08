@@ -1,7 +1,44 @@
-// Step 1: Import React, and Component from react.
-// Step 2: Import render from react-dom
-// Step 3: Import MoviesList from MoviesList
-
+class App extends Component {
+    constructor() {
+      super();
+      this.state = {
+        title: "",
+        movies: ['babe', 'finding nemo', 'titanic', 'the sword in the stone']
+      };
+      this.changeHandler = this.changeHandler.bind(this);
+      this.addMovieHandler = this.addMovieHandler.bind(this);
+    }
+  
+    changeHandler(event) {
+      this.setState({
+        title: event.target.value
+      });
+    }
+  
+    addMovieHandler() {
+      const title = this.state.title
+      const movies = this.state.movies;
+      movies.push(title);
+      this.setState({
+        movies,
+        title: ""
+      });
+    }
+  
+    render() {
+      return (
+        <MoviesList
+          movies={this.state.movies}
+          title={this.state.title}
+          changeHandler={this.changeHandler}
+          addMovieHandler={this.addMovieHandler}
+        />
+      );
+    }
+  
+  }
+  
+  export default App;
 // Step 4: Write a class called App, extending Component.
 // Step 5: Write a constructor function without passing anything into it.
 // Step 6: Inside the constructor function, call super without passing anything into it.
